@@ -19,7 +19,7 @@
 ## 🚀 快速开始
 
 ### 对于普通服主
-从 [Release](https://github.com/StarCodeClub/WorldProtection) 获取最新的预编译版本
+从 [Release](https://github.com/StarCodeClub/WorldProtection/Releases) 获取最新的预编译版本
 
 ### 对于开发者
 
