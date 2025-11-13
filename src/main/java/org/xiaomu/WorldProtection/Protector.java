@@ -67,7 +67,6 @@ public class Protector implements Listener {
         for (String configName : allSections.keySet()) {
             ConfigurationSection section = allSections.get(configName);
             ProtectConfig config = new ProtectConfig(configName, section, allSections);
-            WorldProtection.getInstance().getLogger().info("已加载 " + configName + "[parent=" + config.parentName + "] 保护配置");
             ProtectConfigs.put(configName, config);
         }
         
@@ -94,6 +93,10 @@ public class Protector implements Listener {
         return player.hasPermission("wp.bypass." + worldName + "." + protectionType);
     }
 
+    public static String getPluginPrefix() {
+        return WorldProtection.getInstance().getConfig().getString("plugin-prefix", "<shadow:#000000FF><gradient:#ff7300:#ff3c00><b>[WP]</b></gradient></shadow>");
+    }
+
     private boolean shouldCancel(Player player, String protectionType) {
         String worldName = player.getWorld().getName();
         ProtectConfig config = getWorldConfig(worldName);
@@ -115,7 +118,7 @@ public class Protector implements Listener {
             return config.getProtectionMessage(protectionType);
         }
         return net.kyori.adventure.text.minimessage.MiniMessage.miniMessage()
-            .deserialize("<color:#d60032><b>[WP]</b></color> <red>你没有权限执行此操作.</red>");
+            .deserialize(getPluginPrefix() + " <red>你没有权限执行此操作.</red>");
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

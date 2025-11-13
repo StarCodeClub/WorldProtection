@@ -1,4 +1,7 @@
 
+# 插件前缀 (MiniMessage 格式)
+plugin-prefix: "<shadow:#000000FF><gradient:#ff7300:#ff3c00><b>[WP]</b></gradient></shadow>"
+
 # 保护配置
 protect-config:
   # 配置文件必须包含 default 节点，请勿删除！！！
@@ -21,12 +24,13 @@ protect-config:
     # 玩家无权限时 actionbar 显示的消息 (MiniMessage 格式)
     # 已做频繁触发优化，1s 内只会发送一次
     message:
-      anti-world-edit: "<color:#d60032><b>[WP]</b></color> <red>你没有权限修改这个世界.</red>"
-      anti-pvp: "<color:#d60032><b>[WP]</b></color> <red>已禁止在该世界 PVP.</red>"
-      anti-player-enter: "<color:#d60032><b>[WP]</b></color> <red>你没有权限进入这个世界.</red>"
-      anti-block-interaction: "<color:#d60032><b>[WP]</b></color> <red>你没有权限与这个世界交互.</red>"
-      anti-attack-entity: "<color:#d60032><b>[WP]</b></color> <red>已禁止攻击此世界的生物.</red>"
-      anti-entity-interaction: "<color:#d60032><b>[WP]</b></color> <red>已禁止与此世界的生物交互.</red>"
+      anti-world-edit: "{plugin-prefix} <red>你没有权限修改这个世界.</red>"
+      anti-pvp: "{plugin-prefix} <red>已禁止在该世界 PVP.</red>"
+      anti-player-enter: "{plugin-prefix} <red>你没有权限进入这个世界.</red>"
+      anti-block-interaction: "{plugin-prefix} <red>你没有权限与这个世界交互.</red>"
+      anti-attack-entity: "{plugin-prefix} <red>已禁止攻击此世界的生物.</red>"
+      anti-entity-interaction: "{plugin-prefix} <red>已禁止与此世界的生物交互.</red>"
+
   common:
     # 在 parent 的基础上覆写配置
     # 若没有填写 parent，默认以 default 为 parent
@@ -35,7 +39,7 @@ protect-config:
     anti-explosion: true
 
     message:
-      anti-world-edit: "<color:#d60032><b>[WP]</b></color> <red>你没有此世界的居住权.</red>"
+      anti-world-edit: "{plugin-prefix} <red>你没有此世界的居住权.</red>"
   
   hub-config:
     parent: common
@@ -43,7 +47,7 @@ protect-config:
     anti-attack-entity: true
 
     message:
-      anti-world-edit: "<color:#d60032><b>[WP]</b></color> <red>你不能修改主城.</red>"
+      anti-world-edit: "{plugin-prefix} <red>你不能修改主城的任何方块.</red>"
 
 
 # 指定哪些世界使用哪些保护配置
@@ -54,14 +58,8 @@ world-config:
   "hub": hub-config
   "world_the_end": disable
 
-# 主命令
-# /wp status 查看保护设置总览
-# /wp status <world> 查看某个世界的保护设置
-# /wp reload 重载配置文件
-# /wp version 显示插件版本
-
 # 权限列表:
-# wp.admin: 使用 /wp 命令
+# wp.admin: 使用 /wp 管理员命令
 # 使玩家绕过某个保护:
 # wp.bypass.<world>.anti-world-edit
 # wp.bypass.<world>.anti-pvp

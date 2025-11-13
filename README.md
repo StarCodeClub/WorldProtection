@@ -1,20 +1,20 @@
 # WorldProtection
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/StarCodeClub/WorldProtection)
-[![Version](https://img.shields.io/badge/version-1.3.0--SNAPSHOT-blue.svg)](https://github.com/StarCodeClub/WorldProtection/releases)
+[![Version](https://img.shields.io/badge/version-1.3.1--SNAPSHOT-blue.svg)](https://github.com/StarCodeClub/WorldProtection/releases)
 [![Minecraft](https://img.shields.io/badge/minecraft-1.13--1.21-green.svg)](https://www.spigotmc.org/)
+[![Folia](https://img.shields.io/badge/folia-supported-pink)](https://papermc.io/downloads/folia)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-纯净、轻量 & 现代化 & 高性能的 Minecraft 服务器世界保护插件，支持层次化配置和权限系统。
+纯净、轻量 & 现代化 & 高性能的 Minecraft 服务器世界保护插件，支持层次化配置和权限系统。**(Folia Supported)**
 
 ## ✨ 特性
 
-- **🌍 多世界保护**：层次化配置，支持多世界同时使用不同的保护配置
 - **🔧 灵活配置**：支持配置继承，用最简单的配置轻松设置复杂保护规则
-- **🛡️ 全面保护**：包括反方块修改、反方块交互、反PVP、反实体交互、反实体攻击、爆炸保护、禁止进入世界等
-- **💬 消息自定义**：支持为任意世界和保护类型设置单独的 MiniMessage 格式的提示消息
+- **🌍 全面保护**：包括反方块修改、反方块交互、反PVP、反实体交互、反实体攻击、爆炸保护、禁止进入世界等
+- **💬 消息自定义**：支持为任意世界设置单独的 MiniMessage 格式的提示消息
 - **⚡ High Performance**：轻量级，无冗余代码。ActionBar 消息冷却，防止高带宽占用
-- **🎯 权限系统**：细粒度的权限控制，支持使用特定权限绕过某项保护
+- **🎯 权限系统**：精细权限控制，支持使用特定权限绕过每项保护
 
 ## 🚀 快速开始
 
@@ -44,6 +44,9 @@ mvn clean package
 ### 配置文件结构
 
 ```yaml
+# 插件前缀 (MiniMessage 格式)
+plugin-prefix: "<shadow:#000000FF><gradient:#ff7300:#ff3c00><b>[WP]</b></gradient></shadow>"
+
 protect-config:
   # 配置文件必须包含 default 节点，请勿删除！！！
   default:
@@ -102,13 +105,14 @@ world-config:
 
 ### 命令列表
 
-| 命令 | 说明 | 权限 |
-|------|------|------|
-| `/wp help` | 显示帮助信息 | `wp.admin` |
-| `/wp status` | 查看保护设置总览 | `wp.admin` |
+| 命令 | 说明         | 权限 |
+|------|------------|------|
+| `/wp help` | 显示帮助信息     | `wp.admin` |
+| `/wp status` | 查看保护设置总览   | `wp.admin` |
 | `/wp status <world>` | 查看指定世界保护设置 | `wp.admin` |
-| `/wp reload` | 重载配置文件 | `wp.admin` |
-| `/wp version` | 显示插件版本 | `wp.admin` |
+| `/wp set-config <world> <protect_config/disable>` | 切换某世界的保护配置 | `wp.admin` |
+| `/wp reload` | 重载配置文件     | `wp.admin` |
+| `/wp version` | 显示插件版本     | `wp.admin` |
 
 ### 权限系统
 
@@ -138,6 +142,10 @@ src/main/java/org/xiaomu/WorldProtection/
 ```
 
 ## 📝 更新日志
+
+### v1.3.1-SNAPSHOT
+- 独立 plugin prefix
+- 添加 set-config 命令
 
 ### v1.3.0-SNAPSHOT
 - 支持层次化配置系统

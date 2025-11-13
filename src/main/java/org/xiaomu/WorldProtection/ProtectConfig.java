@@ -95,7 +95,12 @@ public class ProtectConfig {
         ConfigurationSection messageSection = section.getConfigurationSection("message");
         if (messageSection != null) {
             for (String key : messageSection.getKeys(false)) {
-                this.messages.put(key, messageSection.getString(key));
+                String message = messageSection.getString(key);
+                if (message != null) {
+                    // 替换 {plugin-prefix} 占位符
+                    message = message.replace("{plugin-prefix}", Protector.getPluginPrefix());
+                    this.messages.put(key, message);
+                }
             }
         }
     }
@@ -114,7 +119,7 @@ public class ProtectConfig {
     }
 
     public Component getProtectionMessage(String protectionType) {
-        String message = messages.getOrDefault(protectionType, "<color:#d60032><b>[WP]</b></color> <red>你没有权限执行此操作.</red>");
+        String message = messages.getOrDefault(protectionType, Protector.getPluginPrefix() + " <red>你没有权限执行此操作.</red>");
         return MiniMessage.miniMessage().deserialize(message);
     }
 }

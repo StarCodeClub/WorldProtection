@@ -6,7 +6,7 @@
 
     <groupId>org.xiaomu.WorldProtection</groupId>
     <artifactId>WorldProtection</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
